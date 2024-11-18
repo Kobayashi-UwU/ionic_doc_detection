@@ -1,0 +1,87 @@
+<div>
+
+<!-- File input to upload an image -->
+<h1>Upload Image</h1>
+<input type="file" (change)="onFileSelected($event)" accept="image/*" />
+<br /><br />
+
+<!-- Camera -->
+<h1>Upload using camera</h1>
+<!-- Dropdown to choose a camera -->
+<select [(ngModel)]="selectedCameraId">
+  <option *ngFor="let camera of cameras" [value]="camera.deviceId">
+    {{ camera.label || "Camera " + (cameras.indexOf(camera) + 1) }}
+  </option>
+</select>
+
+<!-- Video element to display the camera feed -->
+<video #video autoplay playsinline></video>
+
+<!-- Buttons for camera control and photo capture -->
+<div>
+  <button class="button-6" (click)="startCamera()">Start Camera</button>
+  <button class="button-6" (click)="stopCamera()" [disabled]="!cameraActive">
+    Stop Camera
+  </button>
+  <button class="button-6" (click)="takePhoto()" [disabled]="!cameraActive">
+    Take Photo
+  </button>
+  <!-- Button to rotate the captured image -->
+  <button class="button-6" (click)="rotateImage()" [disabled]="!cameraActive">
+    Rotate Image 90°
+  </button>
+  <button class="button-6" (click)="realTimeYOLO()" [disabled]="!cameraActive">
+    Real-Time YOLO
+  </button>
+  
+</div>
+
+<div>
+  <p>{{ imageInfo }}</p>
+</div>
+
+<!-- Canvas to display the captured photo -->
+<canvas #canvas style="display: none"></canvas>
+
+<!-- Threshold sliders -->
+<h1>Adjust Threshold</h1>
+<div>
+  <label for="threshold1">Threshold 1: </label>
+  <input
+    type="range"
+    id="threshold1"
+    min="0"
+    max="255"
+    [(ngModel)]="threshold1"
+  />
+  <span>{{ threshold1 }}</span>
+</div>
+<div>
+  <label for="threshold2">Threshold 2: </label>
+  <input
+    type="range"
+    id="threshold2"
+    min="0"
+    max="255"
+    [(ngModel)]="threshold2"
+  />
+  <span>{{ threshold2 }}</span>
+</div>
+<br />
+
+<!-- Process button to trigger document scanning -->
+<button class="button-6" (click)="processImage()">Process</button>
+
+<!-- Div to display processing time -->
+<div style="font-weight: bold; margin-top: 10px">{{ processingTime }}</div>
+
+<!-- Display drew contour -->
+<img *ngIf="contourImage" [src]="contourImage" alt="Scanned Document" />
+
+<h3>Diaplay yolo</h3>
+<!-- Display yolo -->
+<img *ngIf="yoloImage" [src]="yoloImage" alt="Scanned Document" />
+<div style="font-weight: bold; margin-top: 10px">{{ yoloprocessingTime }}</div>
+
+<h1>Download Photo</h1>
+<button class="button-6" (click)="downloadPhoto()">Download Photo</button>

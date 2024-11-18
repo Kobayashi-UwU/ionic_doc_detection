@@ -1,0 +1,7 @@
+{
+  "name": "yolo-camera",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
