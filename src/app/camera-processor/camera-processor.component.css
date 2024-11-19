@@ -85,10 +85,14 @@ select {
   background-position: right 10px center;
   background-size: 16px;
 }
+
 video {
-  width: 100%;         /* Makes the video element span the full width of the screen */
-  height: auto;        /* Maintains the aspect ratio */
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the video fits its container */
+  background: black; /* Default background to identify video feed issues */
 }
+
 
 /* Hover effect */
 select:hover {

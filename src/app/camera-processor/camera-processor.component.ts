@@ -97,7 +97,7 @@ export class CameraProcessorComponent implements OnInit {
     const video = this.video.nativeElement;
     const canvas = this.canvas.nativeElement;
     const context = canvas.getContext('2d');
-    const interval = 2000; // 1 second for each frame
+    const interval = 1000; // 1 second for each frame
 
     // Set canvas dimensions based on the video feed
     canvas.width = video.videoWidth;
