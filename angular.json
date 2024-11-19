@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["@tensorflow/tfjs-core"],
+            "allowedCommonJsDependencies": ["@tensorflow/tfjs-core","long"],
             "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",
